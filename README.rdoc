@@ -1,0 +1,12 @@
+ReadMe for TodoCuckoo
+
+Devise - https://www.digitalocean.com/community/tutorials/how-to-configure-devise-and-omniauth-for-your-rails-application
+
+Change Facebook App Setting Site URL for production version for OmniAuth functionality.
+Change Google App Setting Site URL for production version for OmniAuth functionality.
+
+in config/environments/production.rb:
+  config.action_mailer.default_url_options = { host: 'xxxxx', port: xxxx }
+where :host should be set to the actual host of your application.
+
+Protect Env Variables - https://richonrails.com/articles/environment-variables-in-ruby-on-rails
