@@ -29,8 +29,11 @@ Devise.setup do |config|
   config.omniauth :facebook, API_KEYS['FACEBOOK_APP_ID'], API_KEYS['FACEBOOK_SECRET_APP_ID']
   require 'omniauth-google-oauth2'
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
-  config.omniauth :google_oauth2, API_KEYS['GOOGLE_APP_ID'], API_KEYS['GOOGLE_SECRET_APP_ID'], { access_type: "offline", approval_prompt: "", scope: "email" }
-
+  if Rails.env.production?
+    config.omniauth :google_oauth2, API_KEYS['GOOGLE_APP_ID'], API_KEYS['GOOGLE_SECRET_APP_ID'], { access_type: "offline", approval_prompt: "", scope: "email" }
+  else
+    config.omniauth :google_oauth2, ENV['GOOGLE_APP_ID'], ENV['GOOGLE_SECRET_APP_ID'], { access_type: "offline", approval_prompt: "", scope: "email" }
+  end
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
 
