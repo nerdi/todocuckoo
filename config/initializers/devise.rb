@@ -26,7 +26,6 @@ Devise.setup do |config|
 
   #Add your ID and secret here
   #ID first, secret second
-  API_KEYS = YAML::load_file("#{Rails.root}/config/local_env.yml")[Rails.env]
   config.omniauth :facebook, API_KEYS['FACEBOOK_APP_ID'], API_KEYS['FACEBOOK_SECRET_APP_ID']
   require 'omniauth-google-oauth2'
   OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE if Rails.env.development?
